@@ -1,0 +1,607 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="referrer" content="no-referrer" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Gen-Z Tech | Home - Obsidian & Amber Peripherals</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    /* Hero Carousel Frame */
+    .slider-frame {
+      position: relative;
+      max-width: 1280px;
+      margin: 2rem auto 0;
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      border: 1px solid var(--border-gold);
+      background: radial-gradient(circle at center, #241c0e 0%, #130f07 85%);
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.75), inset 0 0 35px rgba(245, 158, 11, 0.08);
+      min-height: 460px;
+      display: flex;
+      align-items: center;
+    }
+
+    .slide {
+      display: none;
+      width: 100%;
+      padding: 4.5rem 3.5rem;
+      text-align: center;
+      animation: fadeInSlide 0.5s ease;
+    }
+
+    .slide.active {
+      display: block;
+    }
+
+    @keyframes fadeInSlide {
+      from { opacity: 0; transform: scale(0.97); }
+      to { opacity: 1; transform: scale(1); }
+    }
+
+    .slide h1 {
+      font-size: 3.2rem;
+      color: var(--text-pure);
+      font-weight: 800;
+      margin-bottom: 1rem;
+    }
+
+    .slide h1 span {
+      background: var(--gradient-brand);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .slide p {
+      font-size: 1.15rem;
+      color: var(--text-muted);
+      max-width: 680px;
+      margin: 0 auto 2.2rem;
+    }
+
+    .slider-btn {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(19, 15, 7, 0.85);
+      border: 1px solid var(--border-gold);
+      color: var(--primary-champagne);
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      cursor: pointer;
+      font-size: 1.2rem;
+      transition: var(--transition);
+      z-index: 10;
+    }
+
+    .slider-btn:hover {
+      background: var(--primary-gold);
+      color: #130f07;
+      box-shadow: var(--glow-gold);
+    }
+
+    .prev-btn { left: 24px; }
+    .next-btn { right: 24px; }
+
+    .slider-dots {
+      position: absolute;
+      bottom: 22px;
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      gap: 0.6rem;
+      z-index: 10;
+    }
+
+    .dot {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: rgba(245, 158, 11, 0.2);
+      cursor: pointer;
+      transition: var(--transition);
+    }
+
+    .dot.active {
+      background: var(--primary-gold);
+      width: 30px;
+      border-radius: 10px;
+      box-shadow: var(--glow-gold);
+    }
+
+    /* Hardware Cards & Real Product Images */
+    .product-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem;
+    }
+
+    .product-card {
+      background: var(--bg-surface);
+      backdrop-filter: blur(10px);
+      border: 1px solid var(--border-glass);
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      transition: var(--transition);
+    }
+
+    .product-card:hover {
+      transform: translateY(-8px);
+      border-color: var(--primary-gold);
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6), var(--glow-gold);
+    }
+
+    .product-img {
+      background: #181309;
+      height: 220px;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-bottom: 1px solid var(--border-glass);
+      position: relative;
+    }
+
+    .product-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.4s ease;
+      display: block;
+    }
+
+    .product-card:hover .product-img img {
+      transform: scale(1.08);
+    }
+
+    .brand-watermark {
+      position: absolute;
+      top: 12px;
+      left: 12px;
+      background: rgba(19, 15, 7, 0.9);
+      backdrop-filter: blur(6px);
+      border: 1px solid var(--border-gold);
+      color: var(--primary-champagne);
+      font-size: 0.72rem;
+      font-weight: 800;
+      letter-spacing: 0.8px;
+      padding: 4px 10px;
+      border-radius: 4px;
+      text-transform: uppercase;
+      z-index: 2;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.7);
+      pointer-events: none;
+    }
+
+    .product-body {
+      padding: 1.8rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      flex-grow: 1;
+    }
+
+    .category-label {
+      font-size: 0.75rem;
+      font-weight: 800;
+      color: var(--primary-champagne);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .product-body h3 {
+      font-size: 1.25rem;
+      margin: 0.4rem 0;
+      color: var(--text-pure);
+    }
+
+    .product-body p {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      margin-bottom: 1.5rem;
+    }
+
+    .card-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-top: auto;
+    }
+
+    .price {
+      font-size: 1.35rem;
+      font-weight: 800;
+      color: var(--primary-champagne);
+    }
+
+    /* Pillars */
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 2rem;
+    }
+
+    .feature-card {
+      background: var(--bg-surface);
+      padding: 2.2rem;
+      border-radius: var(--radius-md);
+      border: 1px solid var(--border-glass);
+      text-align: center;
+      transition: var(--transition);
+    }
+
+    .feature-card:hover {
+      border-color: var(--primary-gold);
+      transform: translateY(-5px);
+    }
+
+    .feature-icon {
+      font-size: 2.8rem;
+      margin-bottom: 1rem;
+    }
+
+    /* Reviews */
+    .review-box {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-glass);
+      border-radius: var(--radius-md);
+      padding: 2.5rem;
+      max-width: 820px;
+      margin: 0 auto;
+    }
+
+    .review-list {
+      display: flex;
+      flex-direction: column;
+      gap: 1.2rem;
+      margin-bottom: 2rem;
+    }
+
+    .review-item {
+      padding: 1.2rem;
+      background: var(--bg-card);
+      border-radius: var(--radius-sm);
+      border-left: 4px solid var(--primary-gold);
+    }
+
+    .review-item h5 {
+      color: var(--text-pure);
+      font-size: 1rem;
+    }
+
+    .review-item p {
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      margin-top: 0.3rem;
+    }
+
+    .review-form {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Floating WhatsApp Action -->
+  <a href="https://wa.me/923001234567?text=Hello%20Gen-Z%20Tech!%20I%20am%20interested%20in%20your%20peripherals." 
+     class="whatsapp-floating-btn" 
+     target="_blank" 
+     title="Chat with Gen-Z Tech on WhatsApp">
+    💬
+  </a>
+
+  <!-- Header -->
+  <header>
+    <nav>
+      <a href="index.html" class="brand-logo">
+        <div class="logo-symbol">GZ</div>
+        <div class="logo-text">Gen-Z <span>Tech</span></div>
+      </a>
+      <ul class="nav-links">
+        <li><a href="index.html" class="active">Home</a></li>
+        <li><a href="products.html">Products</a></li>
+        <li><a href="builder.html">Setup Builder</a></li>
+        <li><a href="gallery.html">Gallery</a></li>
+        <li><a href="about.html">About Us</a></li>
+        <li><a href="contact.html">Contact Us</a></li>
+      </ul>
+      <div class="nav-actions">
+        <button class="cart-widget" onclick="alert('Press C anytime to review your cart summary!')">
+          <span>🛒 Bag</span>
+          <span class="cart-counter" id="cartBadge">0</span>
+        </button>
+      </div>
+    </nav>
+  </header>
+
+  <!-- Hero Carousel -->
+  <section class="slider-frame" id="heroSlider">
+    <!-- Slide 1 -->
+    <div class="slide active">
+      <span class="badge-tag">Obsidian & Amber Series</span>
+      <h1>Precision Gear For <span>Elite Setups</span></h1>
+      <p>Esports-grade low-latency tactile keyboards, lightweight wireless sensors, and high-fidelity studio acoustics.</p>
+      <div style="display:flex; justify-content:center; gap:1rem; flex-wrap:wrap;">
+        <a href="products.html" class="btn btn-primary">Explore Collection →</a>
+        <a href="builder.html" class="btn btn-glass">Build Custom Setup ⚡</a>
+      </div>
+    </div>
+
+    <!-- Slide 2 -->
+    <div class="slide">
+      <span class="badge-tag">Audiophile Immersion</span>
+      <h1>Studio Sound Tuned With <span>AuraPro Audio</span></h1>
+      <p>Active Noise Cancellation engineered for digital creators, streamers, and competitive gameplay.</p>
+      <div style="display:flex; justify-content:center; gap:1rem; flex-wrap:wrap;">
+        <a href="products.html" class="btn btn-primary">View Audio Lineup →</a>
+        <a href="gallery.html" class="btn btn-glass">Inspect Battlestations 🖼️</a>
+      </div>
+    </div>
+
+    <!-- Slide 3 -->
+    <div class="slide">
+      <span class="badge-tag">Interactive Hardware Builder</span>
+      <h1>Configure Your <span>Dream Workstation</span></h1>
+      <p>Calculate power needs, budget allocations, and custom color accents in real time with our live setup builder.</p>
+      <div style="display:flex; justify-content:center; gap:1rem; flex-wrap:wrap;">
+        <a href="builder.html" class="btn btn-primary">Launch Builder Tool →</a>
+        <a href="contact.html" class="btn btn-glass">Custom Inquiries ✉️</a>
+      </div>
+    </div>
+
+    <button class="slider-btn prev-btn" id="prevSlide">&#10094;</button>
+    <button class="slider-btn next-btn" id="nextSlide">&#10095;</button>
+
+    <div class="slider-dots" id="dotsContainer">
+      <span class="dot active" onclick="setSlide(0)"></span>
+      <span class="dot" onclick="setSlide(1)"></span>
+      <span class="dot" onclick="setSlide(2)"></span>
+    </div>
+  </section>
+
+  <!-- Featured Products with Real Photos -->
+  <section class="container">
+    <div class="section-head">
+      <span class="badge-tag">Curated Hardware</span>
+      <h2 class="section-title">Flagship Peripherals</h2>
+      <p class="section-subtitle">Tactile switches, sub-60g lightweight mice, and acoustics engineered for performance.</p>
+    </div>
+
+    <div class="product-grid">
+      <!-- Item 1: Studio ANC Headphones -->
+      <div class="product-card">
+        <div class="product-img">
+          <span class="brand-watermark">Gen-Z Tech</span>
+          <img src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=600&q=80" 
+               alt="Gen-Z Studio Wireless Headset" 
+               loading="lazy" 
+               referrerpolicy="no-referrer" />
+        </div>
+        <div class="product-body">
+          <div>
+            <span class="category-label">Acoustics</span>
+            <h3>Gen-Z Studio Wireless Headset</h3>
+            <p>Hybrid ANC, 40mm Neodymium drivers, and 45-hour quick-charge battery life.</p>
+          </div>
+          <div class="card-footer">
+            <span class="price">Rs. 8,500</span>
+            <button class="btn btn-primary" onclick="addToCart('Gen-Z Studio Wireless Headset', 8500, '🎧')">Add to Bag</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Item 2: Mechanical Keyboard -->
+      <div class="product-card">
+        <div class="product-img">
+          <span class="brand-watermark">Gen-Z Tech</span>
+          <img src="https://images.unsplash.com/photo-1618384887929-16ec33fab9ef?auto=format&fit=crop&w=600&q=80" 
+               alt="VibeKey 75% Mechanical Keyboard" 
+               loading="lazy" 
+               referrerpolicy="no-referrer" />
+        </div>
+        <div class="product-body">
+          <div>
+            <span class="category-label">Keyboards</span>
+            <h3>VibeKey 75% Mechanical</h3>
+            <p>Hot-swappable custom tactile switches, Poron sound dampening, and warm amber RGB backlighting.</p>
+          </div>
+          <div class="card-footer">
+            <span class="price">Rs. 11,200</span>
+            <button class="btn btn-primary" onclick="addToCart('VibeKey 75% Mechanical', 11200, '⌨️')">Add to Bag</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Item 3: Ultralight Wireless Mouse -->
+      <div class="product-card">
+        <div class="product-img">
+          <span class="brand-watermark">Gen-Z Tech</span>
+          <img src="https://images.unsplash.com/photo-1615663245857-ac93bb7c39e7?auto=format&fit=crop&w=600&q=80" 
+               alt="Pulse Ultralight Wireless Mouse" 
+               loading="lazy" 
+               referrerpolicy="no-referrer" />
+        </div>
+        <div class="product-body">
+          <div>
+            <span class="category-label">Mice</span>
+            <h3>Pulse Ultralight Wireless</h3>
+            <p>54-gram balanced chassis with 26,000 DPI PAW3395 optical sensor precision.</p>
+          </div>
+          <div class="card-footer">
+            <span class="price">Rs. 6,800</span>
+            <button class="btn btn-primary" onclick="addToCart('Pulse Ultralight Wireless', 6800, '🖱️')">Add to Bag</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Value Pillars -->
+  <section class="container">
+    <div class="section-head">
+      <span class="badge-tag">The Standard</span>
+      <h2 class="section-title">Why Gen-Z Tech?</h2>
+      <p class="section-subtitle">We balance minimal aesthetics with competitive performance and local reliability.</p>
+    </div>
+
+    <div class="features-grid">
+      <div class="feature-card">
+        <div class="feature-icon">⚡</div>
+        <h4 style="color:var(--text-pure); font-size:1.15rem; margin-bottom:0.5rem;">Sub-Millisecond Response</h4>
+        <p style="color:var(--text-muted); font-size:0.9rem;">2.4GHz proprietary wireless link tuned for zero command latency.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🛡️</div>
+        <h4 style="color:var(--text-pure); font-size:1.15rem; margin-bottom:0.5rem;">1-Year Official Warranty</h4>
+        <p style="color:var(--text-muted); font-size:0.9rem;">Hassle-free direct hardware replacement guarantee across Pakistan.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🚚</div>
+        <h4 style="color:var(--text-pure); font-size:1.15rem; margin-bottom:0.5rem;">Express Nationwide COD</h4>
+        <p style="color:var(--text-muted); font-size:0.9rem;">Fast dispatch with Cash-on-Delivery available in all major cities.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Live Reviews (DOM Injector) -->
+  <section class="container">
+    <div class="section-head">
+      <span class="badge-tag">Community</span>
+      <h2 class="section-title">Creator Transmissions</h2>
+      <p class="section-subtitle">Live feedback from our verified setup community.</p>
+    </div>
+
+    <div class="review-box">
+      <div class="review-list" id="reviewsContainer">
+        <div class="review-item">
+          <h5>Hamza Tariq ⭐⭐⭐⭐⭐</h5>
+          <p>"The VibeKey 75% in amber feels phenomenal. The factory-lubed switches sound deep, crisp, and quiet."</p>
+        </div>
+        <div class="review-item">
+          <h5>Ayesha Khan ⭐⭐⭐⭐⭐</h5>
+          <p>"Received the Studio Headset in Karachi within 48 hours. ANC is brilliant for focus during work sessions."</p>
+        </div>
+      </div>
+
+      <form class="review-form" id="reviewForm" onsubmit="handleReviewSubmit(event)">
+        <h4 style="color:var(--text-pure);">Submit Feedback</h4>
+        <input type="text" id="reviewerName" placeholder="Your Name" required />
+        <textarea id="reviewerComment" rows="3" placeholder="Share your experience with Gen-Z Tech gear..." required></textarea>
+        <button type="submit" class="btn btn-primary" style="align-self:flex-start;">Broadcast Review</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-grid">
+      <div class="footer-col">
+        <h4>Gen-Z Tech</h4>
+        <p>Obsidian & amber performance peripherals, tactile mechanical switches, and minimal workspace ergonomics.</p>
+        <div class="social-links">
+          <a href="https://instagram.com" target="_blank" class="social-btn" title="Instagram">IG</a>
+          <a href="https://linkedin.com" target="_blank" class="social-btn" title="LinkedIn">IN</a>
+          <a href="https://youtube.com" target="_blank" class="social-btn" title="YouTube">YT</a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Explore</h4>
+        <ul>
+          <li><a href="index.html">Home Overview</a></li>
+          <li><a href="products.html">Hardware Catalog</a></li>
+          <li><a href="builder.html">Setup Builder</a></li>
+          <li><a href="gallery.html">Setup Gallery</a></li>
+          <li><a href="about.html">Our Benchmark</a></li>
+          <li><a href="contact.html">Support Desk</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Customer Care</h4>
+        <ul>
+          <li><a href="contact.html#orderSection">Order Inquiries</a></li>
+          <li><a href="about.html">Hardware Specs</a></li>
+          <li><a href="contact.html">Warranty Claims</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Karachi Hub</h4>
+        <p>📍 Tech Arcade, Main Shahrah-e-Faisal, Karachi</p>
+        <p style="margin-top:0.4rem;">📞 +92 300 1234567</p>
+        <p style="margin-top:0.4rem;">✉️ support@genztech.pk</p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 Gen-Z Tech. All rights reserved. | Examination Project</p>
+    </div>
+  </footer>
+
+  <script src="main.js"></script>
+  <script>
+    // Hero Slider Logic
+    let currentSlide = 0;
+    const slides = document.querySelectorAll('.slide');
+    const dots = document.querySelectorAll('.dot');
+    let slideTimer;
+
+    function showSlide(index) {
+      if (index >= slides.length) currentSlide = 0;
+      else if (index < 0) currentSlide = slides.length - 1;
+      else currentSlide = index;
+
+      slides.forEach(s => s.classList.remove('active'));
+      dots.forEach(d => d.classList.remove('active'));
+
+      slides[currentSlide].classList.add('active');
+      dots[currentSlide].classList.add('active');
+    }
+
+    function nextSlide() { showSlide(currentSlide + 1); }
+    function prevSlide() { showSlide(currentSlide - 1); }
+    function setSlide(i) { showSlide(i); resetInterval(); }
+
+    function resetInterval() {
+      clearInterval(slideTimer);
+      slideTimer = setInterval(nextSlide, 5000);
+    }
+
+    document.getElementById('nextSlide').addEventListener('click', () => { nextSlide(); resetInterval(); });
+    document.getElementById('prevSlide').addEventListener('click', () => { prevSlide(); resetInterval(); });
+
+    // Keyboard Arrow Controls
+    window.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowRight') { nextSlide(); resetInterval(); }
+      if (e.key === 'ArrowLeft') { prevSlide(); resetInterval(); }
+    });
+
+    slideTimer = setInterval(nextSlide, 5000);
+
+    // Dynamic Review DOM Injector
+    function handleReviewSubmit(e) {
+      e.preventDefault();
+      const name = document.getElementById('reviewerName').value.trim();
+      const comment = document.getElementById('reviewerComment').value.trim();
+      if (!name || !comment) return;
+
+      const reviewContainer = document.getElementById('reviewsContainer');
+      const newReview = document.createElement('div');
+      newReview.className = 'review-item';
+      newReview.innerHTML = `<h5>${escapeHtml(name)} ⭐⭐⭐⭐⭐</h5><p>"${escapeHtml(comment)}"</p>`;
+
+      reviewContainer.prepend(newReview);
+      document.getElementById('reviewForm').reset();
+      showToastNotification("Review posted successfully!");
+    }
+
+    function escapeHtml(text) {
+      const div = document.createElement('div');
+      div.innerText = text;
+      return div.innerHTML;
+    }
+  </script>
+</body>
+</html>

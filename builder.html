@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Gen-Z Tech | Custom PC & Setup Configurator</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    .builder-layout {
+      display: grid;
+      grid-template-columns: 1.8fr 1fr;
+      gap: 2.5rem;
+      margin-top: 2rem;
+    }
+
+    /* Configuration Panel */
+    .builder-panel {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+
+    .config-card {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-glass);
+      border-radius: var(--radius-md);
+      padding: 1.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.8rem;
+      transition: var(--transition);
+    }
+
+    .config-card:hover {
+      border-color: var(--primary-gold);
+    }
+
+    .config-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .config-header h3 {
+      font-size: 1.1rem;
+      color: var(--text-pure);
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+    }
+
+    .component-select {
+      width: 100%;
+      background: #181309;
+      border: 1px solid var(--border-glass);
+      color: var(--text-pure);
+      padding: 0.85rem 1rem;
+      border-radius: var(--radius-sm);
+      outline: none;
+      font-size: 0.95rem;
+      cursor: pointer;
+    }
+
+    .component-select:focus {
+      border-color: var(--primary-gold);
+      box-shadow: 0 0 12px rgba(245, 158, 11, 0.25);
+    }
+
+    .spec-preview {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      display: flex;
+      justify-content: space-between;
+    }
+
+    /* Live Summary Sticky Sidebar */
+    .builder-summary-card {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-gold);
+      border-radius: var(--radius-md);
+      padding: 2rem;
+      position: sticky;
+      top: 100px;
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    }
+
+    .summary-metric {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-bottom: 0.8rem;
+      border-bottom: 1px solid var(--border-glass);
+      font-size: 0.95rem;
+    }
+
+    .wattage-meter {
+      background: #181309;
+      border-radius: 50px;
+      height: 10px;
+      overflow: hidden;
+      margin-top: 0.5rem;
+      border: 1px solid var(--border-glass);
+    }
+
+    .wattage-bar {
+      height: 100%;
+      width: 20%;
+      background: var(--gradient-brand);
+      transition: width 0.4s ease;
+    }
+
+    .summary-total {
+      font-size: 1.8rem;
+      font-weight: 800;
+      color: var(--primary-champagne);
+    }
+
+    .invoice-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      max-height: 220px;
+      overflow-y: auto;
+      padding-right: 0.5rem;
+    }
+
+    .invoice-item {
+      display: flex;
+      justify-content: space-between;
+    }
+
+    @media (max-width: 960px) {
+      .builder-layout {
+        grid-template-columns: 1fr;
+      }
+      .builder-summary-card {
+        position: static;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Floating WhatsApp Action -->
+  <a href="https://wa.me/923001234567?text=Hello%20Gen-Z%20Tech!%20I%20have%20a%20question%20about%20a%20custom%20PC%20build." 
+     class="whatsapp-floating-btn" 
+     target="_blank" 
+     title="Chat with Gen-Z Tech on WhatsApp">
+    💬
+  </a>
+
+  <!-- Header -->
+  <header>
+    <nav>
+      <a href="index.html" class="brand-logo">
+        <div class="logo-symbol">GZ</div>
+        <div class="logo-text">Gen-Z <span>Tech</span></div>
+      </a>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="products.html">Products</a></li>
+        <li><a href="builder.html" class="active">Setup Builder</a></li>
+        <li><a href="gallery.html">Gallery</a></li>
+        <li><a href="about.html">About Us</a></li>
+        <li><a href="contact.html">Contact Us</a></li>
+      </ul>
+      <div class="nav-actions">
+        <button class="cart-widget" onclick="alert('Press C anytime to review your cart summary!')">
+          <span>🛒 Bag</span>
+          <span class="cart-counter" id="cartBadge">0</span>
+        </button>
+      </div>
+    </nav>
+  </header>
+
+  <main class="container">
+    <div class="section-head">
+      <span class="badge-tag">Custom Rig Studio</span>
+      <h1 class="section-title">Interactive Setup & PC Configurator</h1>
+      <p class="section-subtitle">Select compatible components, monitor real-time wattage requirements, and calculate live build pricing.</p>
+    </div>
+
+    <div class="builder-layout">
+      <!-- Left Column: Component Selectors -->
+      <div class="builder-panel" id="builderSelectors">
+        <!-- Dynamically injected by builder.js -->
+      </div>
+
+      <!-- Right Column: Live Bill of Materials & Metrics -->
+      <div>
+        <div class="builder-summary-card">
+          <div>
+            <h3 style="color:var(--text-pure); font-size:1.3rem;">⚡ Build Performance</h3>
+            <p style="color:var(--text-muted); font-size:0.85rem; margin-top:0.3rem;">Real-time hardware compatibility & power calculations.</p>
+          </div>
+
+          <div class="summary-metric">
+            <span style="color:var(--text-muted);">Estimated Power Load:</span>
+            <strong id="totalWatts" style="color:var(--primary-champagne);">0 W</strong>
+          </div>
+
+          <div>
+            <div style="display:flex; justify-content:space-between; font-size:0.8rem; color:var(--text-muted);">
+              <span>Power Supply Headroom</span>
+              <span id="powerRatingText">Safe Load</span>
+            </div>
+            <div class="wattage-meter">
+              <div class="wattage-bar" id="wattBar"></div>
+            </div>
+          </div>
+
+          <!-- Bill of Materials Summary -->
+          <div>
+            <h4 style="color:var(--text-pure); font-size:0.95rem; margin-bottom:0.8rem;">Selected Components</h4>
+            <div class="invoice-list" id="invoiceList">
+              <div style="text-align:center; padding:1.5rem 0;">No components chosen yet.</div>
+            </div>
+          </div>
+
+          <div style="border-top:1px solid var(--border-glass); padding-top:1.2rem;">
+            <div style="display:flex; justify-content:space-between; align-items:baseline;">
+              <span style="color:var(--text-muted); font-size:0.9rem;">Estimated Total:</span>
+              <div class="summary-total" id="grandTotal">Rs. 0</div>
+            </div>
+          </div>
+
+          <div style="display:flex; flex-direction:column; gap:0.8rem;">
+            <button class="btn btn-primary" onclick="addBuildToCart()">Add Entire Build to Bag 🛒</button>
+            <button class="btn btn-glass" onclick="resetBuilder()">Reset Configurations ↺</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-grid">
+      <div class="footer-col">
+        <h4>Gen-Z Tech</h4>
+        <p>Obsidian & amber performance peripherals, custom PC rigs, and minimal workspace setups.</p>
+        <div class="social-links">
+          <a href="https://instagram.com" target="_blank" class="social-btn" title="Instagram">IG</a>
+          <a href="https://linkedin.com" target="_blank" class="social-btn" title="LinkedIn">IN</a>
+          <a href="https://youtube.com" target="_blank" class="social-btn" title="YouTube">YT</a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Explore</h4>
+        <ul>
+          <li><a href="index.html">Home Overview</a></li>
+          <li><a href="products.html">Hardware Catalog</a></li>
+          <li><a href="builder.html">Setup Builder</a></li>
+          <li><a href="gallery.html">Setup Gallery</a></li>
+          <li><a href="about.html">Our Benchmark</a></li>
+          <li><a href="contact.html">Support Desk</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Customer Care</h4>
+        <ul>
+          <li><a href="contact.html#orderSection">Order Inquiries</a></li>
+          <li><a href="about.html">Hardware Specs</a></li>
+          <li><a href="contact.html">Warranty Claims</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Karachi Hub</h4>
+        <p>📍 Tech Arcade, Main Shahrah-e-Faisal, Karachi</p>
+        <p style="margin-top:0.4rem;">📞 +92 300 1234567</p>
+        <p style="margin-top:0.4rem;">✉️ support@genztech.pk</p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 Gen-Z Tech. All rights reserved. | Examination Project</p>
+    </div>
+  </footer>
+
+  <script src="main.js"></script>
+  <script src="builder.js"></script>
+</body>
+</html>

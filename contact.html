@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="referrer" content="no-referrer" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Gen-Z Tech | Contact & Support - Order Hardware</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    /* Contact Header */
+    .contact-hero {
+      text-align: center;
+      padding: 4rem 1.5rem 3rem;
+      background: radial-gradient(circle at top, #241c0e 0%, #130f07 80%);
+      border-bottom: 1px solid var(--border-glass);
+    }
+
+    .contact-hero h1 {
+      font-size: 3rem;
+      font-weight: 800;
+      color: var(--text-pure);
+      margin-bottom: 1rem;
+    }
+
+    .contact-hero h1 span {
+      background: var(--gradient-brand);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .contact-hero p {
+      color: var(--text-muted);
+      max-width: 680px;
+      margin: 0 auto;
+      font-size: 1.1rem;
+      line-height: 1.6;
+    }
+
+    /* Layout Grid */
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+      margin: 3.5rem 0;
+    }
+
+    /* Info Column */
+    .contact-info-card {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-glass);
+      border-radius: var(--radius-md);
+      padding: 2.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+    }
+
+    .info-block {
+      display: flex;
+      gap: 1.2rem;
+      align-items: flex-start;
+    }
+
+    .info-icon {
+      font-size: 1.8rem;
+      background: #181309;
+      border: 1px solid var(--border-gold);
+      width: 52px;
+      height: 52px;
+      border-radius: var(--radius-sm);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      box-shadow: var(--glow-gold);
+    }
+
+    .info-text h4 {
+      color: var(--text-pure);
+      font-size: 1.1rem;
+      margin-bottom: 0.3rem;
+    }
+
+    .info-text p, .info-text a {
+      color: var(--text-muted);
+      font-size: 0.92rem;
+      text-decoration: none;
+      line-height: 1.5;
+      transition: var(--transition);
+    }
+
+    .info-text a:hover {
+      color: var(--primary-champagne);
+    }
+
+    /* Direct WhatsApp Box */
+    .direct-whatsapp-box {
+      background: rgba(37, 211, 102, 0.08);
+      border: 1px solid rgba(37, 211, 102, 0.35);
+      padding: 1.5rem;
+      border-radius: var(--radius-sm);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .btn-wa-direct {
+      background: #25d366;
+      color: #fff;
+      padding: 0.65rem 1.3rem;
+      border-radius: var(--radius-sm);
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 0.9rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      transition: var(--transition);
+      box-shadow: 0 4px 15px rgba(37, 211, 102, 0.3);
+    }
+
+    .btn-wa-direct:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(37, 211, 102, 0.5);
+    }
+
+    /* Form Column */
+    .contact-form-card {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-glass);
+      border-radius: var(--radius-md);
+      padding: 2.5rem;
+    }
+
+    .form-group {
+      margin-bottom: 1.3rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+    }
+
+    .form-group label {
+      color: var(--text-pure);
+      font-size: 0.9rem;
+      font-weight: 600;
+    }
+
+    .form-control {
+      background: #181309;
+      border: 1px solid var(--border-glass);
+      color: var(--text-pure);
+      padding: 0.85rem 1.1rem;
+      border-radius: var(--radius-sm);
+      outline: none;
+      font-size: 0.95rem;
+      transition: var(--transition);
+      width: 100%;
+    }
+
+    .form-control:focus {
+      border-color: var(--primary-gold);
+      box-shadow: 0 0 15px rgba(245, 158, 11, 0.25);
+    }
+
+    .form-error {
+      color: #ef4444;
+      font-size: 0.8rem;
+      display: none;
+      font-weight: 600;
+    }
+
+    .btn-submit {
+      width: 100%;
+      background: var(--gradient-brand);
+      color: #130f07;
+      border: none;
+      padding: 0.95rem;
+      border-radius: var(--radius-sm);
+      font-size: 1rem;
+      font-weight: 800;
+      cursor: pointer;
+      transition: var(--transition);
+      box-shadow: var(--glow-brand);
+      margin-top: 0.5rem;
+    }
+
+    .btn-submit:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 35px rgba(245, 158, 11, 0.45);
+    }
+
+    /* Embedded Google Map Section */
+    .map-section {
+      margin: 4rem 0 2rem;
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      border: 1px solid var(--border-glass);
+      background: var(--bg-surface);
+    }
+
+    .map-container iframe {
+      width: 100%;
+      height: 420px;
+      border: none;
+      display: block;
+    }
+
+    @media (max-width: 900px) {
+      .contact-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Floating WhatsApp -->
+  <a href="https://wa.me/923001234567?text=Hello%20Gen-Z%20Tech!%20I%20have%20an%20inquiry." 
+     class="whatsapp-floating-btn" 
+     target="_blank" 
+     title="Chat on WhatsApp">
+    💬
+  </a>
+
+  <!-- Header -->
+  <header>
+    <nav>
+      <a href="index.html" class="brand-logo">
+        <div class="logo-symbol">GZ</div>
+        <div class="logo-text">Gen-Z <span>Tech</span></div>
+      </a>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="products.html">Products</a></li>
+        <li><a href="builder.html">Setup Builder</a></li>
+        <li><a href="gallery.html">Gallery</a></li>
+        <li><a href="about.html">About Us</a></li>
+        <li><a href="contact.html" class="active">Contact Us</a></li>
+      </ul>
+      <div class="nav-actions">
+        <button class="cart-widget" onclick="alert('Press C anytime to review your cart summary!')">
+          <span>🛒 Bag</span>
+          <span class="cart-counter" id="cartBadge">0</span>
+        </button>
+      </div>
+    </nav>
+  </header>
+
+  <!-- Hero Banner -->
+  <section class="contact-hero">
+    <span class="badge-tag">Direct Hardware Desk</span>
+    <h1>Connect With <span>Gen-Z Tech</span></h1>
+    <p>Have an inquiry, custom PC build request, or warranty question? Reach our team in Karachi or submit the order dispatch form below.</p>
+  </section>
+
+  <!-- Main Content Grid -->
+  <main class="container">
+    <div class="contact-grid" id="orderSection">
+
+      <!-- Left Column: Business Hub Details -->
+      <div class="contact-info-card">
+        <div>
+          <h2 style="font-size:1.6rem; color:var(--text-pure); margin-bottom:0.8rem;">Karachi Headquarters</h2>
+          <p style="color:var(--text-muted); font-size:0.95rem;">Experience tactile switches, test sound profiles, and inspect custom battlestations at our experience center.</p>
+        </div>
+
+        <div class="info-block">
+          <div class="info-icon">📍</div>
+          <div class="info-text">
+            <h4>Physical Address</h4>
+            <p>Suite 402, Tech Arcade, Main Shahrah-e-Faisal<br>Karachi, Sindh, Pakistan</p>
+          </div>
+        </div>
+
+        <div class="info-block">
+          <div class="info-icon">📞</div>
+          <div class="info-text">
+            <h4>Helpline & Orders</h4>
+            <p><a href="tel:+923001234567">+92 300 1234567</a><br>Mon – Sat (10:00 AM – 8:00 PM PKT)</p>
+          </div>
+        </div>
+
+        <div class="info-block">
+          <div class="info-icon">✉️</div>
+          <div class="info-text">
+            <h4>Official Inquiries</h4>
+            <p><a href="mailto:support@genztech.pk">support@genztech.pk</a><br><a href="mailto:sales@genztech.pk">sales@genztech.pk</a></p>
+          </div>
+        </div>
+
+        <!-- WhatsApp Quick Chat Integration -->
+        <div class="direct-whatsapp-box">
+          <div>
+            <h4 style="color:#fff; font-size:1rem;">Direct WhatsApp Dispatch</h4>
+            <p style="color:var(--text-muted); font-size:0.85rem;">Instant replies from our setup engineers</p>
+          </div>
+          <a href="https://wa.me/923001234567?text=Hello%20Gen-Z%20Tech!%20I%20want%20to%20place%20an%20order." target="_blank" class="btn-wa-direct">
+            💬 Chat Now
+          </a>
+        </div>
+
+        <!-- Social Media Integrations -->
+        <div>
+          <h4 style="color:var(--text-pure); margin-bottom:0.8rem; font-size:1rem;">Follow Our Builds</h4>
+          <div class="social-links">
+            <a href="https://instagram.com" target="_blank" class="social-btn" title="Instagram">IG</a>
+            <a href="https://linkedin.com" target="_blank" class="social-btn" title="LinkedIn">IN</a>
+            <a href="https://youtube.com" target="_blank" class="social-btn" title="YouTube">YT</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right Column: Validated Online Inquiry & Order Form -->
+      <div class="contact-form-card">
+        <h2 style="font-size:1.6rem; color:var(--text-pure); margin-bottom:0.4rem;">Customer Inquiry & Order Form</h2>
+        <p style="color:var(--text-muted); font-size:0.9rem; margin-bottom:1.8rem;">Fill out the form below. If you have hardware in your bag, it will automatically populate your order details.</p>
+
+        <form id="contactForm" novalidate onsubmit="validateAndSubmit(event)">
+          
+          <!-- Full Name -->
+          <div class="form-group">
+            <label for="fullName">Full Name *</label>
+            <input type="text" id="fullName" class="form-control" placeholder="e.g. Hunain Mirza" />
+            <span class="form-error" id="nameError">Please enter your full name (minimum 3 characters).</span>
+          </div>
+
+          <!-- Email Address -->
+          <div class="form-group">
+            <label for="email">Email Address *</label>
+            <input type="email" id="email" class="form-control" placeholder="name@domain.com" />
+            <span class="form-error" id="emailError">Please enter a valid email address.</span>
+          </div>
+
+          <!-- Phone Number -->
+          <div class="form-group">
+            <label for="phone">Phone / WhatsApp Number *</label>
+            <input type="tel" id="phone" class="form-control" placeholder="03001234567" />
+            <span class="form-error" id="phoneError">Please enter a valid 11-digit phone number (e.g. 03001234567).</span>
+          </div>
+
+          <!-- Purpose of Inquiry -->
+          <div class="form-group">
+            <label for="inquiryType">Inquiry Type *</label>
+            <select id="inquiryType" class="form-control">
+              <option value="">-- Select Purpose --</option>
+              <option value="order">Place an Order / Checkout Bag</option>
+              <option value="custom_pc">Custom PC Rig Consultation</option>
+              <option value="recommendation">Hardware Peripheral Advice</option>
+              <option value="warranty">Official Warranty Claim</option>
+            </select>
+            <span class="form-error" id="typeError">Please choose an inquiry type.</span>
+          </div>
+
+          <!-- Message / Item details -->
+          <div class="form-group">
+            <label for="message">Message / Order Specifics *</label>
+            <textarea id="message" rows="4" class="form-control" placeholder="Describe the peripherals you need, your custom PC budget, or shipping address..."></textarea>
+            <span class="form-error" id="messageError">Message must contain at least 10 characters.</span>
+          </div>
+
+          <button type="submit" class="btn-submit">Submit Inquiry / Place Order →</button>
+        </form>
+      </div>
+
+    </div>
+
+    <!-- Embedded Google Maps (Exam Requirement) -->
+    <section class="map-section">
+      <div style="padding:1.5rem 2rem; border-bottom:1px solid var(--border-glass);">
+        <h3 style="color:var(--text-pure); font-size:1.2rem;">📍 Our Karachi Experience Center</h3>
+        <p style="color:var(--text-muted); font-size:0.9rem;">Easily accessible on Main Shahrah-e-Faisal, Karachi.</p>
+      </div>
+      <div class="map-container">
+        <iframe 
+          title="Gen-Z Tech Store Location"
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d115808.38459740525!2d67.01254378775452!3d24.863849187317787!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3eb33e5b6d510ffb%3A0x6543ea98e727e57c!2sShahrah-e-Faisal%20Rd%2C%20Karachi%2C%20Pakistan!5e0!3m2!1sen!2s!4v1700000000000!5m2!1sen!2s" 
+          allowfullscreen="" 
+          loading="lazy" 
+          referrerpolicy="no-referrer-when-downgrade">
+        </iframe>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-grid">
+      <div class="footer-col">
+        <h4>Gen-Z Tech</h4>
+        <p>Obsidian & amber performance peripherals, custom battlestations, and minimal workspace ergonomics.</p>
+        <div class="social-links">
+          <a href="https://instagram.com" target="_blank" class="social-btn" title="Instagram">IG</a>
+          <a href="https://linkedin.com" target="_blank" class="social-btn" title="LinkedIn">IN</a>
+          <a href="https://youtube.com" target="_blank" class="social-btn" title="YouTube">YT</a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Explore</h4>
+        <ul>
+          <li><a href="index.html">Home Overview</a></li>
+          <li><a href="products.html">Hardware Catalog</a></li>
+          <li><a href="builder.html">Setup Builder</a></li>
+          <li><a href="gallery.html">Setup Gallery</a></li>
+          <li><a href="about.html">Our Benchmark</a></li>
+          <li><a href="contact.html">Support Desk</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Customer Care</h4>
+        <ul>
+          <li><a href="contact.html#orderSection">Order Inquiries</a></li>
+          <li><a href="about.html">Hardware Specs</a></li>
+          <li><a href="contact.html">Warranty Claims</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Karachi Hub</h4>
+        <p>📍 Tech Arcade, Main Shahrah-e-Faisal, Karachi</p>
+        <p style="margin-top:0.4rem;">📞 +92 300 1234567</p>
+        <p style="margin-top:0.4rem;">✉️ support@genztech.pk</p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 Gen-Z Tech. All rights reserved. | Examination Project</p>
+    </div>
+  </footer>
+
+  <script src="main.js"></script>
+  <script src="contact.js"></script>
+</body>
+</html>

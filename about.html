@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="referrer" content="no-referrer" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Gen-Z Tech | About Us - Crafting Next-Gen Hardware</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    /* Hero Narrative */
+    .about-hero {
+      text-align: center;
+      padding: 4rem 1.5rem 3rem;
+      background: radial-gradient(circle at top, #241c0e 0%, #130f07 80%);
+      border-bottom: 1px solid var(--border-glass);
+    }
+
+    .about-hero h1 {
+      font-size: 3rem;
+      font-weight: 800;
+      color: var(--text-pure);
+      margin-bottom: 1rem;
+    }
+
+    .about-hero h1 span {
+      background: var(--gradient-brand);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .about-hero p {
+      color: var(--text-muted);
+      max-width: 720px;
+      margin: 0 auto;
+      font-size: 1.1rem;
+      line-height: 1.7;
+    }
+
+    /* Animated Counter Grid */
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1.8rem;
+      margin: 3.5rem 0;
+    }
+
+    .stat-card {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-glass);
+      border-radius: var(--radius-md);
+      padding: 2.2rem 1.5rem;
+      text-align: center;
+      transition: var(--transition);
+    }
+
+    .stat-card:hover {
+      border-color: var(--primary-gold);
+      transform: translateY(-5px);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6), var(--glow-gold);
+    }
+
+    .stat-number {
+      font-size: 2.8rem;
+      font-weight: 800;
+      font-family: 'Space Grotesk', sans-serif;
+      color: var(--primary-champagne);
+      display: block;
+      margin-bottom: 0.3rem;
+    }
+
+    .stat-label {
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      font-weight: 600;
+    }
+
+    /* Pillars of Engineering */
+    .pillars-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+      margin: 3rem 0;
+    }
+
+    .pillar-card {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-glass);
+      border-radius: var(--radius-md);
+      padding: 2.2rem;
+      transition: var(--transition);
+    }
+
+    .pillar-card:hover {
+      border-color: var(--primary-gold);
+      transform: translateY(-4px);
+    }
+
+    .pillar-card h3 {
+      color: var(--text-pure);
+      font-size: 1.25rem;
+      margin-bottom: 0.8rem;
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+    }
+
+    .pillar-card p {
+      color: var(--text-muted);
+      font-size: 0.92rem;
+      line-height: 1.6;
+    }
+
+    /* Benchmark Comparison Table */
+    .benchmark-section {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-glass);
+      border-radius: var(--radius-lg);
+      padding: 2.5rem;
+      margin: 4rem 0;
+      overflow-x: auto;
+    }
+
+    .benchmark-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin-bottom: 2rem;
+    }
+
+    .table-toggle-btn {
+      background: #181309;
+      border: 1px solid var(--border-gold);
+      color: var(--primary-champagne);
+      padding: 0.55rem 1.2rem;
+      border-radius: 50px;
+      font-size: 0.85rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+
+    .table-toggle-btn:hover {
+      background: var(--primary-gold);
+      color: #130f07;
+    }
+
+    .benchmark-table {
+      width: 100%;
+      border-collapse: collapse;
+      min-width: 600px;
+    }
+
+    .benchmark-table th, 
+    .benchmark-table td {
+      padding: 1.1rem 1.4rem;
+      text-align: left;
+      border-bottom: 1px solid var(--border-glass);
+    }
+
+    .benchmark-table th {
+      color: var(--primary-champagne);
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      font-weight: 700;
+      background: rgba(19, 15, 7, 0.6);
+    }
+
+    .benchmark-table td {
+      color: var(--text-pure);
+      font-size: 0.92rem;
+    }
+
+    .benchmark-table tr:hover td {
+      background: rgba(245, 158, 11, 0.04);
+    }
+
+    .highlight-cell {
+      color: var(--primary-champagne) !important;
+      font-weight: 700;
+    }
+
+    /* Team Grid */
+    .team-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 2rem;
+      margin-top: 2.5rem;
+    }
+
+    .team-card {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-glass);
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      text-align: center;
+      padding: 2rem 1.5rem;
+      transition: var(--transition);
+    }
+
+    .team-card:hover {
+      border-color: var(--primary-gold);
+      transform: translateY(-6px);
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.6);
+    }
+
+    .team-avatar {
+      width: 90px;
+      height: 90px;
+      border-radius: 50%;
+      margin: 0 auto 1.2rem;
+      background: #1f180d;
+      border: 2px solid var(--primary-gold);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2.2rem;
+      color: var(--primary-champagne);
+      box-shadow: var(--glow-gold);
+    }
+
+    .team-name {
+      font-size: 1.15rem;
+      color: var(--text-pure);
+      font-weight: 700;
+    }
+
+    .team-role {
+      color: var(--primary-champagne);
+      font-size: 0.82rem;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      font-weight: 600;
+      margin: 0.3rem 0 0.8rem;
+    }
+
+    .team-bio {
+      color: var(--text-muted);
+      font-size: 0.85rem;
+      line-height: 1.5;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Floating WhatsApp -->
+  <a href="https://wa.me/923001234567?text=Hello%20Gen-Z%20Tech!%20I%20want%20to%20learn%20more%20about%20your%20company." 
+     class="whatsapp-floating-btn" 
+     target="_blank" 
+     title="Chat with Gen-Z Tech on WhatsApp">
+    💬
+  </a>
+
+  <!-- Header -->
+  <header>
+    <nav>
+      <a href="index.html" class="brand-logo">
+        <div class="logo-symbol">GZ</div>
+        <div class="logo-text">Gen-Z <span>Tech</span></div>
+      </a>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="products.html">Products</a></li>
+        <li><a href="builder.html">Setup Builder</a></li>
+        <li><a href="gallery.html">Gallery</a></li>
+        <li><a href="about.html" class="active">About Us</a></li>
+        <li><a href="contact.html">Contact Us</a></li>
+      </ul>
+      <div class="nav-actions">
+        <button class="cart-widget" onclick="alert('Press C anytime to review your cart summary!')">
+          <span>🛒 Bag</span>
+          <span class="cart-counter" id="cartBadge">0</span>
+        </button>
+      </div>
+    </nav>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="about-hero">
+    <span class="badge-tag">Our Ethos & Origin</span>
+    <h1>Engineered For <span>Precision & Flow</span></h1>
+    <p>Gen-Z Tech was founded with a singular conviction: modern creators and gamers deserve hardware that matches their standards—combining tactile mechanical precision, lossless acoustics, and clean workspace aesthetics.</p>
+  </section>
+
+  <!-- Main Container -->
+  <main class="container">
+
+    <!-- Animated Counters (JavaScript Demonstration) -->
+    <div class="stats-grid">
+      <div class="stat-card">
+        <span class="stat-number" data-target="25000">0</span>
+        <span class="stat-label">Active Community Members</span>
+      </div>
+      <div class="stat-card">
+        <span class="stat-number" data-target="1850">0</span>
+        <span class="stat-label">Custom Battlestations Configured</span>
+      </div>
+      <div class="stat-card">
+        <span class="stat-number" data-target="99">0</span>
+        <span class="stat-label">% Positive Warranty Claims</span>
+      </div>
+      <div class="stat-card">
+        <span class="stat-number" data-target="1">0</span>
+        <span class="stat-label">ms Proprietary Link Latency</span>
+      </div>
+    </div>
+
+    <!-- Core Engineering Pillars -->
+    <div class="section-head">
+      <span class="badge-tag">Design Principles</span>
+      <h2 class="section-title">The Three Pillars of Gen-Z Tech</h2>
+      <p class="section-subtitle">How we engineer tactile switches, portable power hubs, and studio acoustics.</p>
+    </div>
+
+    <div class="pillars-grid">
+      <div class="pillar-card">
+        <h3><span>⚡</span> Zero-Compromise Latency</h3>
+        <p>From 8,000Hz polling rate wireless optical sensors to sub-millisecond 2.4GHz RF communication protocols, our peripherals remove input latency between thought and on-screen execution.</p>
+      </div>
+      <div class="pillar-card">
+        <h3><span>🛠️</span> Modular & Serviceable</h3>
+        <p>We reject throwaway electronics. Our keyboards feature five-pin hot-swappable switch sockets, easily lubricated stabilizer stems, and modular detachable USB braided cords.</p>
+      </div>
+      <div class="pillar-card">
+        <h3><span>🪵</span> Obsidian & Amber Aesthetic</h3>
+        <p>No garish clown rainbow lights. We focus on deep obsidian foundations, brushed anodized aluminum cases, and warm liquid amber backlighting suited for focused late-night sprints.</p>
+      </div>
+    </div>
+
+    <!-- Interactive Benchmark Matrix Table (DOM Event Requirement) -->
+    <div class="benchmark-section">
+      <div class="benchmark-header">
+        <div>
+          <h2 style="color:var(--text-pure); font-size:1.4rem;">📊 Performance Benchmark Matrix</h2>
+          <p style="color:var(--text-muted); font-size:0.88rem; margin-top:0.3rem;">Compare Gen-Z Tech engineering against standard commercial peripherals.</p>
+        </div>
+        <button class="table-toggle-btn" id="toggleBenchmarkBtn" onclick="toggleBenchmarkView()">
+          Switch to Office Mode
+        </button>
+      </div>
+
+      <table class="benchmark-table" id="benchmarkTable">
+        <thead>
+          <tr>
+            <th>Hardware Attribute</th>
+            <th>Gen-Z Tech Flagship</th>
+            <th>Standard Retail Gear</th>
+            <th>Advantage Factor</th>
+          </tr>
+        </thead>
+        <tbody id="benchmarkBody">
+          <!-- Injected dynamically by JavaScript -->
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Leadership Team -->
+    <div class="section-head">
+      <span class="badge-tag">The Builders</span>
+      <h2 class="section-title">Core Hardware Specialists</h2>
+      <p class="section-subtitle">The engineers and setup curators driving the Gen-Z Tech ecosystem.</p>
+    </div>
+
+    <div class="team-grid">
+      <div class="team-card">
+        <div class="team-avatar">⚡</div>
+        <h3 class="team-name">Hunain Mirza</h3>
+        <div class="team-role">Founder & Chief Architect</div>
+        <p class="team-bio">Spearheading mechanical switch acoustics, wireless protocol optimization, and high-density power bank architectures.</p>
+      </div>
+
+      <div class="team-card">
+        <div class="team-avatar">🎧</div>
+        <h3 class="team-name">Zayd Al-Hassan</h3>
+        <div class="team-role">Lead Acoustic Engineer</div>
+        <p class="team-bio">Specializing in neodymium sound driver tuning, spatial sound curves, and active noise cancellation DSP algorithms.</p>
+      </div>
+
+      <div class="team-card">
+        <div class="team-avatar">🖥️</div>
+        <h3 class="team-name">Farhan Siddiqui</h3>
+        <div class="team-role">Rig Systems Specialist</div>
+        <p class="team-bio">Overseeing custom PC airflow thermodynamics, component wattage balancing, and workstation cable curation.</p>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-grid">
+      <div class="footer-col">
+        <h4>Gen-Z Tech</h4>
+        <p>Obsidian & amber performance peripherals, custom battlestations, and minimal workspace ergonomics.</p>
+        <div class="social-links">
+          <a href="https://instagram.com" target="_blank" class="social-btn" title="Instagram">IG</a>
+          <a href="https://linkedin.com" target="_blank" class="social-btn" title="LinkedIn">IN</a>
+          <a href="https://youtube.com" target="_blank" class="social-btn" title="YouTube">YT</a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Explore</h4>
+        <ul>
+          <li><a href="index.html">Home Overview</a></li>
+          <li><a href="products.html">Hardware Catalog</a></li>
+          <li><a href="builder.html">Setup Builder</a></li>
+          <li><a href="gallery.html">Setup Gallery</a></li>
+          <li><a href="about.html">Our Benchmark</a></li>
+          <li><a href="contact.html">Support Desk</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Customer Care</h4>
+        <ul>
+          <li><a href="contact.html#orderSection">Order Inquiries</a></li>
+          <li><a href="about.html">Hardware Specs</a></li>
+          <li><a href="contact.html">Warranty Claims</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Karachi Hub</h4>
+        <p>📍 Tech Arcade, Main Shahrah-e-Faisal, Karachi</p>
+        <p style="margin-top:0.4rem;">📞 +92 300 1234567</p>
+        <p style="margin-top:0.4rem;">✉️ support@genztech.pk</p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 Gen-Z Tech. All rights reserved. | Examination Project</p>
+    </div>
+  </footer>
+
+  <script src="main.js"></script>
+  <script>
+    // 1. Animated Milestone Counters
+    document.addEventListener('DOMContentLoaded', () => {
+      const counters = document.querySelectorAll('.stat-number');
+      const speed = 40;
+
+      counters.forEach(counter => {
+        const updateCount = () => {
+          const target = +counter.getAttribute('data-target');
+          const count = +counter.innerText.replace(/,/g, '');
+          const increment = Math.ceil(target / speed);
+
+          if (count < target) {
+            counter.innerText = (count + increment).toLocaleString();
+            setTimeout(updateCount, 25);
+          } else {
+            counter.innerText = target.toLocaleString() + (target === 99 ? "%" : target === 1 ? "ms" : "+");
+          }
+        };
+        updateCount();
+      });
+
+      renderBenchmarkTable(false);
+    });
+
+    // 2. Interactive Benchmark Matrix Switcher
+    let isOfficeMode = false;
+
+    const GAMING_BENCHMARKS = [
+      { attr: "Wireless Input Latency", genz: "0.125 ms (8KHz Polling)", standard: "8.000 ms (125Hz Polling)", adv: "64x Faster" },
+      { attr: "Keyboard Switch Lifespan", genz: "100 Million Keystrokes (Lubed)", standard: "20 Million Keystrokes (Membrane)", adv: "5x Durability" },
+      { attr: "Acoustic Noise Reduction", genz: "-38 dB Hybrid Multi-Mic ANC", standard: "-15 dB Passive Foam", adv: "+150% Isolation" },
+      { attr: "Power Bank Fast Charging", genz: "65W - 100W PD 3.0 Laptop Ready", standard: "10W Slow USB Output", adv: "10x Power Delivery" },
+      { attr: "Mouse Sensor Tracking", genz: "PAW3395 (26,000 DPI / 650 IPS)", standard: "Budget Sensor (1,600 DPI)", adv: "Flawless Tracking" }
+    ];
+
+    const OFFICE_BENCHMARKS = [
+      { attr: "Acoustic Switch Decibels", genz: "35 dB (Silent Peach Dampened)", standard: "65 dB (Loud Blue Clicky)", adv: "Library Quiet" },
+      { attr: "Ergonomic Handshake Angle", genz: "57° Natural Posture", standard: "Flat 0° Pronation", adv: "Zero Wrist Strain" },
+      { attr: "Continuous Battery Life", genz: "80 Hours (VoltBand Bluetooth)", standard: "12 Hours Battery", adv: "6.5x Endurance" },
+      { attr: "Laptop Stand Dissipation", genz: "Passive Cutout Aluminum (-8°C)", standard: "Plastic Enclosure (+4°C)", adv: "Cooler Operation" },
+      { attr: "Monitor Screen Reflection", genz: "0% Asymmetric Light Bar", standard: "Overhead Harsh Glare", adv: "Zero Eye Fatigue" }
+    ];
+
+    function renderBenchmarkTable(officeMode) {
+      const data = officeMode ? OFFICE_BENCHMARKS : GAMING_BENCHMARKS;
+      const tbody = document.getElementById('benchmarkBody');
+      tbody.innerHTML = '';
+
+      data.forEach(row => {
+        const tr = document.createElement('tr');
+        tr.innerHTML = `
+          <td><strong>${row.attr}</strong></td>
+          <td class="highlight-cell">${row.genz}</td>
+          <td style="color:var(--text-muted);">${row.standard}</td>
+          <td><span class="badge-tag" style="margin-bottom:0; font-size:0.75rem;">${row.adv}</span></td>
+        `;
+        tbody.appendChild(tr);
+      });
+    }
+
+    function toggleBenchmarkView() {
+      isOfficeMode = !isOfficeMode;
+      const btn = document.getElementById('toggleBenchmarkBtn');
+      if (isOfficeMode) {
+        btn.innerText = "Switch to Esports Mode";
+        renderBenchmarkTable(true);
+        showToastNotification("Switched benchmark to Ergonomic Office profile.");
+      } else {
+        btn.innerText = "Switch to Office Mode";
+        renderBenchmarkTable(false);
+        showToastNotification("Switched benchmark to Esports Flagship profile.");
+      }
+    }
+  </script>
+</body>
+</html>
